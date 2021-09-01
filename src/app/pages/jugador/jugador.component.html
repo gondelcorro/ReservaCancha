@@ -1,0 +1,75 @@
+<div style="margin-left: 40px; margin-top: 60px">
+  <h1><strong>&nbsp; Modificar datos</strong></h1>
+  <mat-divider></mat-divider>
+</div>
+
+<div style="display: flex; justify-content: center; margin-top: 20px">
+  <mat-card class="mat-elevation-z0; example-card">
+    <form #modificarForm="ngForm" [formGroup]="form" fxFlex>
+      <mat-form-field class="w-100">
+        <input matInput placeholder="Nombre y apellido" [(ngModel)]="jugador.nomYApe" formControlName="nomyape" autofocus="true" required>
+        <mat-hint *ngIf="form.controls['nomyape'].errors?.required || form.controls['nomyape'].errors?.pattern">
+          Ingrese su nombre y apellido.
+        </mat-hint>
+        <mat-hint *ngIf="!(form.controls['nomyape'].errors?.required ||form.controls['nomyape'].errors?.pattern)"
+                  style="color: #1F8A4D;">
+          El nombre es válido.
+        </mat-hint>
+        <mat-icon matSuffix>person_identify</mat-icon>
+      </mat-form-field>
+      <mat-form-field class="w-100">
+        <input matInput placeholder="Teléfono" [(ngModel)]="jugador.telefono" formControlName="telefono" required>
+        <mat-hint>
+          Ingrese un nuémero de teléfono celular.
+        </mat-hint>
+        <mat-icon matSuffix>phone</mat-icon>
+      </mat-form-field>
+      <mat-form-field class="w-100">
+        <input matInput placeholder="Correo electrónico" [(ngModel)]="jugador.correo" formControlName="correo" required>
+        <mat-icon matSuffix>email</mat-icon>
+        <mat-hint>Ingrese un correo electrónico</mat-hint>
+        <!--  <mat-error *ngIf="correo.invalid">{{getErrorMessage()}}</mat-error> -->
+      </mat-form-field>
+      <mat-form-field class="w-100">
+        <input matInput [type]="hidePass ? 'password' : 'text'" placeholder="Contraseña"
+               formControlName="clave" required>
+        <mat-hint *ngIf="form.controls['clave'].errors?.required ||
+                            form.controls['clave'].errors?.pattern">
+          La contraseña debe contener letras, números y longitud mínima de 10 caracteres.
+        </mat-hint>
+        <mat-hint *ngIf="!(form.controls['clave'].errors?.required ||
+                            form.controls['clave'].errors?.pattern)" style="color: #1F8A4D;">
+          La contraseña es válida.
+        </mat-hint>
+        <button mat-icon-button matSuffix (click)="hidePass = !hidePass"
+                [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hidePass">
+          <mat-icon>{{hidePass ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+      </mat-form-field>
+      <mat-form-field class="w-100">
+        <input matInput [type]="hidePassConfirm ? 'password' : 'text'"
+               placeholder="Confirmar contraseña" formControlName="confirmaClave" required>
+        <mat-hint *ngIf="form.controls['confirmaClave'].errors?.required">
+          Ingrese nuevamente su contraseña.
+        </mat-hint>
+        <mat-hint *ngIf="form.controls['confirmaClave'].errors?.coinciden == null"
+                  style="color: #1F8A4D;">
+          Las contraseñas coinciden.
+        </mat-hint>
+        <mat-hint *ngIf="form.controls['confirmaClave'].errors?.coinciden ==false &&
+                        !form.controls['confirmaClave'].errors?.required" style="color: red;">
+          Las contraseñas no coinciden.
+        </mat-hint>
+        <button mat-icon-button matSuffix (click)="hidePassConfirm = !hidePassConfirm"
+                [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hidePassConfirm">
+          <mat-icon>{{hidePassConfirm ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+      </mat-form-field>
+      <br/><br><br>
+      <button mat-raised-button color="primary" class="w-100" [disabled]="!form.valid"
+              (click)="modificar(modificarForm)">Modificar datos
+      </button>
+    </form>
+  </mat-card>
+
+</div>

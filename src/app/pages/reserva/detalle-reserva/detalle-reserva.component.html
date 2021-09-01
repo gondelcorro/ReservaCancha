@@ -1,0 +1,31 @@
+<div class="container">
+  <h1>Detalles de tu reserva</h1>
+  <mat-divider></mat-divider>
+  <br>
+  <div style="margin-left: 30px">
+    <h3><strong>Código: </strong> {{reservaSelected.codigo}}</h3>
+    <h3><strong>Medio: </strong> {{reservaSelected.automatica ? 'Automatica' : 'Manual'}}</h3>
+    <h3><strong>Estado: </strong> {{reservaSelected.estado}}</h3>
+    <h2 align="center" style="color:#ff5722;">Detalles del pago</h2>
+    <mat-divider></mat-divider>
+    <br>
+    <div style="margin-left: 30px">
+      <h3><strong><span style="color: #3f51b5">N° de referencia: </span></strong> {{litaPagos[0].numeroPago}}</h3>
+      <h3><strong><span style="color: #3f51b5">Estado de pago:</span> </strong> {{litaPagos[0].estado}}</h3>
+      <h3><strong><span style="color: #3f51b5">Medio de pago: </span></strong> {{litaPagos[0].medioPago}}</h3>
+      <h3><strong><span style="color: #3f51b5">Fecha: </span></strong> {{litaPagos[0].fecha | date: "dd-MM-yyyy"}}</h3>
+      <h3><strong><span style="color: #3f51b5">Importe: </span></strong> {{litaPagos[0].importe | currency: "ARS"}}</h3>
+    </div>
+
+    <div *ngIf="litaPagos.length > 1" style="margin-left: 30px">
+      <br>
+      <h2 align="center" style="color: #1F8A4D;">Detalles del reintegro</h2>
+      <mat-divider></mat-divider>
+      <br>
+      <h3><strong><span style="color: #3f51b5">Importe: </span></strong> {{litaPagos[1].importe | currency: "ARS"}}</h3>
+      <h3><strong><span style="color: #3f51b5">Fecha de reintegro: </span></strong> {{litaPagos[1].fecha | date: "dd-MM-yyyy"}}</h3>
+    </div>
+    <br>
+  </div>
+</div>
+

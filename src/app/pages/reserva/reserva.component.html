@@ -1,0 +1,77 @@
+<mat-sidenav-container class="container-sidenav">
+  <mat-sidenav-content>
+    <br/>
+    <mat-card class="mat-elevation-z0"
+              style="display: flex; flex-direction: column; justify-content: center; margin: 20px;">
+      <div>
+        <h1><strong>&nbsp; Tus reservas</strong></h1>
+      </div>
+      <mat-form-field appearance="standard" style="width: 100%" *ngIf="listaReservas.data != 0">
+        <mat-label>Búsqueda</mat-label>
+        <input #input matInput (keyup)="applyFilter($event)" placeholder="Ingrese el código de reserva, o busque por complejo o fecha" >
+      </mat-form-field>
+      <table mat-table [dataSource]="listaReservas" class="mat-elevation-z2" *ngIf="listaReservas.data != 0">
+        <ng-container matColumnDef="complejo">
+          <th mat-header-cell *matHeaderCellDef> Complejo</th>
+          <td mat-cell *matCellDef="let reserva">{{reserva.complejo.nombre}} </td>
+        </ng-container>
+        <ng-container matColumnDef="cancha">
+          <th mat-header-cell *matHeaderCellDef> Cancha</th>
+          <td mat-cell *matCellDef="let reserva"> Nro. {{reserva.cancha.numero}} - {{reserva.cancha.tipo}}  </td>
+        </ng-container>
+        <ng-container matColumnDef="fecha">
+          <th mat-header-cell *matHeaderCellDef> Fecha</th>
+          <td mat-cell *matCellDef="let reserva"> {{reserva.fecha}} </td>
+        </ng-container>
+        <ng-container matColumnDef="horaInicio">
+          <th mat-header-cell *matHeaderCellDef> Hora inicio</th>
+          <td mat-cell *matCellDef="let reserva"> {{reserva.horaInicio}} </td>
+        </ng-container>
+        <ng-container matColumnDef="horaFin">
+          <th mat-header-cell *matHeaderCellDef> Hora fin</th>
+          <td mat-cell *matCellDef="let reserva"> {{reserva.horaFin}} </td>
+        </ng-container>
+        <ng-container matColumnDef="acciones">
+          <th mat-header-cell *matHeaderCellDef style="width: 300px"> Acciones</th>
+          <td mat-cell *matCellDef="let resreva" style="width: 300px">
+            <button mat-button (click)="detallePago(resreva); sidenavDetalles.toggle();">
+              <mat-icon>info</mat-icon>
+              Detalles
+            </button>
+            <button mat-button color="primary" (click)="editarReserva(resreva)">
+              <mat-icon>edit</mat-icon>
+              Editar
+            </button>
+            <button mat-button color="warn" (click)="anularReserva(resreva)">
+              <mat-icon>delete</mat-icon>
+              Anular
+            </button>
+          </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        <!-- Row shown when there is no matching data. -->
+      <!--  <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell" colspan="6" *ngIf="input.value != '' ">Ningún registro coincide con el valor de búsqueda ingresado "{{input.value}}"</td>
+        </tr>-->
+      </table>
+      <mat-paginator *ngIf="listaReservas.data != 0" [pageSizeOptions]="[10, 20, 30]" [length]="cantidad" showFirstLastButtons></mat-paginator>
+
+      <div *ngIf="listaReservas.data == 0">
+        <h2 style="margin-left: 20px">* Aún no tenes reservas registradas.</h2>
+      </div>
+
+    </mat-card>
+  </mat-sidenav-content>
+
+  <mat-sidenav #sidenavDetalles mode="over" position="end" hidden style="width: 450px;">
+    <button mat-icon-button style="top: 15px; left: 85%;" (click)="sidenavDetalles.toggle()">
+      <mat-icon>close</mat-icon>
+    </button>
+    <br/><br/>
+    <div *ngIf="reservaSelect!=null">
+      <app-detalle-reserva [reservaSelected]="reservaSelect" [litaPagos]="listaPagos"></app-detalle-reserva>
+    </div>
+  </mat-sidenav>
+
+</mat-sidenav-container>

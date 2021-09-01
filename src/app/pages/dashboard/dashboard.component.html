@@ -1,0 +1,118 @@
+<mat-drawer-container class="example-container">
+  <mat-drawer mode="side" opened>
+    <br><!--<br><br>-->
+    <div align="center" style="color: forestgreen">
+      <ng-lottie width="250px"
+                 height="170px"
+                 containerClass="moving-box"
+                 [options]="options1">
+      </ng-lottie>
+    </div>
+
+    <mat-vertical-stepper #stepper linear style="margin-left: 10px">
+
+      <mat-step [stepControl]="formGroupComplejo" state="complejo">
+        <form [formGroup]="formGroupComplejo">
+          <ng-template matStepLabel>Seleccioná el complejo</ng-template>
+          <mat-form-field style="margin-left:20px; width:250px;">
+            <mat-label>Complejo</mat-label>
+            <mat-select [(ngModel)]="selectedComplejo" formControlName="complejo"
+                        (selectionChange)="cargarCancha(stepper)" required>
+              <mat-option *ngFor="let complejo of complejos" [value]="complejo">
+                {{complejo.nombre}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <!-- <div>
+             <button *ngIf="selectedComplejo!=undefined" mat-button matStepperNext (click)="cargarCancha()">Siguiente
+             </button>
+           </div>-->
+        </form>
+      </mat-step>
+
+      <mat-step [stepControl]="formGroupCancha" state="cancha">
+        <form [formGroup]="formGroupCancha">
+          <ng-template matStepLabel>Elegí una cancha</ng-template>
+          <mat-form-field style="margin-left:20px; width:250px;">
+            <mat-label>Cancha</mat-label>
+            <mat-select [(ngModel)]="selectedCancha" formControlName="cancha" (selectionChange)="stepFecha(stepper)"
+                        required>
+              <mat-option *ngFor="let cancha of canchas" [value]="cancha">
+                {{"Nro. " + cancha.numero + " - " + " " + cancha.tipo}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <!--<div>
+            <button *ngIf="selectedCancha!=undefined" mat-button matStepperNext>Siguiente</button>
+          </div>-->
+        </form>
+      </mat-step>
+
+      <mat-step [stepControl]="formGroupFecha" state="fecha">
+        <form [formGroup]="formGroupFecha">
+          <ng-template matStepLabel>Elegí un día</ng-template>
+          <mat-form-field style="margin-left:20px; width:250px;">
+            <mat-label>Fecha</mat-label>
+            <input matInput [matDatepicker]="picker" [min]="minDate" [max]="maxDate" [(ngModel)]="selectedFecha"
+                   formControlName="fecha" (dateChange)="stepConfirmacion(stepper)" required>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker disabled="false"></mat-datepicker>
+            <!--  <input matInput placeholder="Ingrese un código" [formControl]="formCtrlFecha" required> -->
+          </mat-form-field>
+          <!-- <div>
+             <button *ngIf="selectedFecha!=undefined" mat-button matStepperNext>Siguiente</button>
+           </div>-->
+        </form>
+      </mat-step>
+
+      <mat-step state="listo">
+        <ng-template matStepLabel>Confirmá los datos</ng-template>
+        <br/>
+        <h3 *ngIf="selectedComplejo!=undefined">
+          <strong>Complejo: </strong> <span style="margin-right:10px"></span>  {{" " + selectedComplejo.nombre}}
+        </h3>
+        <h3 *ngIf="selectedCancha!=undefined">
+          <strong>Cancha: </strong> <span
+          style="margin-right:10px"></span>  {{" Nro. " + selectedCancha.numero + "  - " + selectedCancha.tipo}}
+        </h3>
+        <h3 *ngIf="selectedFecha!=undefined">
+          <strong>Fecha: </strong> <span style="margin-right:10px"></span>  {{selectedFecha | date:'dd-MM-yyyy'}}
+        </h3>
+        <div align="left">
+          <br> <!--stepper.reset();-->
+          <button mat-raised-button color="warn" style="width: 80%;" (click)="setMostrarScheduler()">
+            <mat-icon>search</mat-icon>
+            Consultar
+          </button>
+        </div>
+      </mat-step>
+
+      <!-- Icon overrides. -->
+      <ng-template matStepperIcon="complejo">
+        <mat-icon>face</mat-icon>
+      </ng-template>
+      <ng-template matStepperIcon="cancha">
+        <mat-icon>library_books</mat-icon>
+      </ng-template>
+      <ng-template matStepperIcon="fecha">
+        <mat-icon>check</mat-icon>
+      </ng-template>
+
+    </mat-vertical-stepper>
+  </mat-drawer>
+
+  <mat-drawer-content class="margin-left">
+    <div align="center" style="margin-top: 20%" *ngIf="!mostrarScheduler" >
+      <ng-lottie width="300px"
+                 height="200px"
+                 containerClass="moving-box"
+                 [options]="options">
+      </ng-lottie>
+    </div>
+    <app-scheduler *ngIf="mostrarScheduler"   [reservas]="reservas" [complejo]="selectedComplejo" [cancha]="selectedCancha"
+                   [fecha]="selectedFecha">
+    </app-scheduler>
+  </mat-drawer-content>
+
+</mat-drawer-container>
+

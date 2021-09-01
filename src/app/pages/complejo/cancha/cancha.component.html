@@ -1,0 +1,29 @@
+<h1>Listado de canchas</h1>
+<br>
+<mat-dialog-content *ngFor="let cancha of listaCanchas">
+  <mat-expansion-panel expanded="false" style="margin-bottom: 15px">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <strong>Cancha {{cancha.numero}}</strong>
+      </mat-panel-title>
+      <mat-panel-description>
+        {{cancha.tipo}}
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <div style="display: flex; flex-direction: row; justify-content: space-between; margin-top: 20px">
+      <p><strong><span style="color: #ff5722">Precio día:</span></strong> {{cancha.precioDia | currency: "ARS"}}</p>
+      <p><strong><span style="color: #d50000">Precio noche:</span></strong> {{cancha.precioNoche | currency: "ARS"}}</p>
+    </div>
+  </mat-expansion-panel>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-raised-button color="accent" mat-dialog-close>Cerrar</button>
+</mat-dialog-actions>
+
+
+<!--<div align="end" style="vertical-align: bottom">
+  <button mat-stroked-button color="accent" mat-dialog-close>Cerrar</button>
+</div>-->
+
+
+
