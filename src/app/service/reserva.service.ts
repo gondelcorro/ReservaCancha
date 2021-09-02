@@ -54,8 +54,8 @@ export class ReservaService {
     }*/);
   }
 
-  validarReglasReservaEdiAnu(reserva: Reserva){
-    return this.httpClient.post<ReglasReservaError>(environment.url_gestionComplejos + `/reserva/validarReglasEdiAnu`, reserva);
+  validarReglasAnulacion(reserva: Reserva){
+    return this.httpClient.post<ReglasReservaError>(environment.url_gestionComplejos + `/reserva/validarReglasAnulacion`, reserva);
   }
 
   anular(reserva: Reserva){
@@ -64,5 +64,15 @@ export class ReservaService {
 
   calcularImporte(reserva: Reserva){
     return this.httpClient.post<number>(environment.url_gestionComplejos + `/reserva/obtenerImporte`, reserva);
+  }
+
+  validarReglasEdicion(reserva: Reserva, reglaAvalidar: string){
+    return this.httpClient.post<ReglasReservaError>(environment.url_gestionComplejos + `/reserva/validarReglasEdicion`, reserva, {
+      params: new HttpParams().set("reglaAValidar", reglaAvalidar)
+    });
+  }
+
+  modificar(reserva: Reserva){
+    return this.httpClient.put<number>(environment.url_gestionComplejos + `/reserva/modificar`, reserva);
   }
 }

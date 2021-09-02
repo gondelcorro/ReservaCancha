@@ -31,6 +31,7 @@ export class SchedulerComponent implements OnInit {
   @Input() complejo: Complejo;
   @Input() cancha: Cancha;
   @Input() fecha: Date;
+  @Input() reservaEdicion: Reserva;
 
   view: CalendarView = CalendarView.Day;
   viewDate: Date = new Date();
@@ -167,15 +168,17 @@ export class SchedulerComponent implements OnInit {
         duration: 5000
       });
     } else {
-      this.dialog.open(CrearReservaComponent, {
+      const dialogRef = this.dialog.open(CrearReservaComponent, {
         width: '350px',
         data: {
           fechaReserva: segment.date,
           complejo: this.complejo,
-          cancha: this.cancha
+          cancha: this.cancha,
+          reservaEdicion: this.reservaEdicion
         },
         disableClose: true
       });
+      dialogRef.afterClosed().subscribe( cerrar => {this.dialog.closeAll()});
     }
   }
 

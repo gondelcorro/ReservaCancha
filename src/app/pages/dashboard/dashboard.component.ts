@@ -43,6 +43,7 @@ export class DashboardComponent implements OnInit {
   options: AnimationOptions = {
     path: '/assets/animations/drone.json', // download the JSON version of animation in your project directory and add the path to it like ./assets/animations/example.json
   };
+  reservaEdion: Reserva = null;//DESDE EL DASHBOARD SOLO SE CREA ASI Q LA PASO NULL
 
   constructor(private complejoService: ComplejoService, private canchaService: CanchaService,
               private reservaService: ReservaService, private datePipe: DatePipe, private router: Router,

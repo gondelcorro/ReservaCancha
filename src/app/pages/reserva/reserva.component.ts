@@ -69,9 +69,9 @@ export class ReservaComponent implements OnInit, AfterViewInit {
       this.snackBar.open('La reserva está anulada, no se puede editar', 'Aviso', {duration: 5000});
     }
     if (reservaSelect.estado == EstadoReserva.CONFIRMADA) {
-      this.reservaService.validarReglasReservaEdiAnu(reservaSelect).subscribe(resp => {
+      this.reservaService.validarReglasEdicion(reservaSelect, "regla1").subscribe(resp => {
         if (resp.codigo == 99) {
-          const dialogRef = this.dialog.open(EditarReservaComponent, {
+          this.dialog.open(EditarReservaComponent, {
             width: '900px',
             height: '630px',
             disableClose: true,
@@ -92,7 +92,7 @@ export class ReservaComponent implements OnInit, AfterViewInit {
       this.snackBar.open('Esta reserva ya se encuentra anulada', 'Aviso', {duration: 5000});
     }
     if (reservaSelect.estado == EstadoReserva.CONFIRMADA) {
-      this.reservaService.validarReglasReservaEdiAnu(reservaSelect).subscribe(resp => {
+      this.reservaService.validarReglasAnulacion(reservaSelect).subscribe(resp => {
         if (resp.codigo == 99) {
           this.dialog.open(AnulacionComponent, {
             data: reservaSelect,

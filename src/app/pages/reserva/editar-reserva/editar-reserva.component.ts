@@ -49,7 +49,7 @@ export class EditarReservaComponent implements OnInit {
   }
 
   public async cargarCancha(){
-    this.canchas = await this.canchaService.listarCanchas(this.selectedComplejo.idComplejo).toPromise();
+    this.canchas = await this.canchaService.listarPorComplejoYHabilitada(this.selectedComplejo.idComplejo).toPromise();
   }
 
   cancelar(){

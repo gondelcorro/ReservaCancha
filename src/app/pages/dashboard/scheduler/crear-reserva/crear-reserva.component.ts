@@ -7,6 +7,7 @@ import {Reserva} from '../../../../model/reserva';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {JugadorSharedService} from '../../../../shared/jugador-shared.service';
 import {EstadoReserva} from '../../../../model/estadoReserva';
+import {environment} from '../../../../../environments/environment';
 
 @Component({
   selector: 'app-crear-reserva',
@@ -53,32 +54,65 @@ export class CrearReservaComponent implements OnInit {
         duration: 5000
       });
     } else {
-      let reserva = new Reserva();
-      reserva.fecha = this.fechaFormateada;
-      reserva.horaInicio = this.horaInicio;
-      reserva.horaFin =  this.datePipe.transform(horaFinAsDate, 'HH:mm');;
-      reserva.complejo = this.data.complejo;
-      reserva.cancha = this.data.cancha;
-      reserva.jugador = this.jugadorServiceShared.getJugador();
-      reserva.automatica = true;
-      reserva.estado = EstadoReserva.CONFIRMADA;
-      this.dialogRef.close();
-      this.reservaService.validarReglasReservaCreacion(reserva).subscribe(resp => {
-        if (resp.codigo == 99) {
-          this.reservaService.configurarPreferenciaPago(reserva).subscribe(urlCheckout =>{
-            if (urlCheckout != undefined && urlCheckout != "") {
-              console.log("URL MP: " + urlCheckout);
-              window.open(urlCheckout, '_self');
-            }
+      //NUEVA RESERVA
+      if(this.data.reservaEdicion == null){
+        let reserva = new Reserva();
+        reserva.fecha = this.fechaFormateada;
+        reserva.horaInicio = this.horaInicio;
+        reserva.horaFin =  this.datePipe.transform(horaFinAsDate, 'HH:mm');
+        reserva.complejo = this.data.complejo;
+        reserva.cancha = this.data.cancha;
+        reserva.jugador = this.jugadorServiceShared.getJugador();
+        reserva.automatica = true;
+        reserva.estado = EstadoReserva.CONFIRMADA;
+        this.dialogRef.close();
+        this.reservaService.validarReglasReservaCreacion(reserva).subscribe(resp => {
+          if (resp.codigo == 99) {
+            this.reservaService.configurarPreferenciaPago(reserva).subscribe(urlCheckout =>{
+              if (urlCheckout != undefined && urlCheckout != "") {
+                console.log("URL MP: " + urlCheckout);
+                window.open(urlCheckout, '_self');
+              }
             }, error => {
               console.log("Error configurando preferencia de pago", error._body);
             });
-        } else {
-          this.snackBar.open(resp.descripcion, 'Error', {
-            duration: 5000
+          } else {
+            this.snackBar.open(resp.descripcion, 'Error', {
+              duration: 5000
+            });
+          }
+        });
+      }else{
+        //EDICION DE RESERVA - SOLO LE MODIFICO LA CANCHA Y LA FECHA Y HORARIOS
+        this.data.reservaEdicion.cancha = this.data.cancha;
+        this.data.reservaEdicion.fecha = this.fechaFormateada;
+        this.data.reservaEdicion.horaInicio = this.horaInicio;
+        this.data.reservaEdicion.horaFin = this.datePipe.transform(horaFinAsDate, 'HH:mm');
+        this.reservaService.validarReglasEdicion(this.data.reservaEdicion, "otrasReglas").subscribe(resp =>{
+          if (resp.codigo == 99) {
+          this.reservaService.modificar(this.data.reservaEdicion).subscribe(data =>{
+            if(data == 1){
+              this.reservaService.listarPorUsuario(sessionStorage.getItem(environment.user)).subscribe(reservas => {
+                this.reservaService.listadoReservasCambio.next(reservas);
+              });
+              this.dialogRef.close();
+              this.snackBar.open("Reserva modificada exitosamente", 'Aviso', {
+                duration: 5000
+              });
+            }else{
+              this.snackBar.open("Error al modificar la reserva", 'Error', {
+                duration: 5000
+              });
+            }
           });
-        }
-      });
+          } else {
+            this.dialogRef.close();
+            this.snackBar.open(resp.descripcion, 'Error', {
+              duration: 5000
+            });
+          }
+        });
+      }
     }
   }
 

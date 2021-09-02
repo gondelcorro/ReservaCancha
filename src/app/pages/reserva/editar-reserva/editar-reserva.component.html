@@ -46,7 +46,7 @@
     <!--[reservas]="reservas"-->
     <div *ngIf="mostrarScheduler">
       <app-scheduler [reservas]="reservas" [complejo]="selectedComplejo" [cancha]="selectedCancha"
-                     [fecha]="selectedFecha" >
+                     [fecha]="selectedFecha" [reservaEdicion]="reservaSelect" >
       </app-scheduler>
     </div>
   </mat-drawer-content>

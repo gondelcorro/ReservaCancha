@@ -46,7 +46,7 @@ export class SchedulerService {
         isCancelled: false
       }
     }
-    return new Promise(resolve => setTimeout(() => resolve(eventsReservas), 0.02));
+    return new Promise(resolve => setTimeout(() => resolve(eventsReservas), 0.0));
   }
 
 }

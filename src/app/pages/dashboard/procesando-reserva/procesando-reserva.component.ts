@@ -37,7 +37,7 @@ export class ProcesandoReservaComponent implements OnInit {
     this.reservaService.registrarReservaYPago(this.informePago).subscribe(resp => {
       this.dialogRef.close();
       if (resp = 1) {
-        this.snackbar.open("Se registró el pago correctamente", "Aviso", {
+        this.snackbar.open("Se registró su reserva correctamente", "Aviso", {
           duration: 7000, horizontalPosition: 'center', panelClass: ['background-snackbar', 'text-snackbar']
         });
       } else {
