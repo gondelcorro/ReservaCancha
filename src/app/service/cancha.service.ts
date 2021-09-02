@@ -18,6 +18,10 @@ export class CanchaService {
     }*/);
   }
 
+  listarPorComplejo(idComplejo: number){
+    return this.http.get<Cancha[]>(environment.url_gestionComplejos + `/cancha/listar/${idComplejo}`);
+  }
+
   listarPorComplejoYHabilitada(idComplejo: number){
     return this.http.get<Cancha[]>(environment.url_gestionComplejos + `/cancha/listarHabilitadas/${idComplejo}`);
   }
