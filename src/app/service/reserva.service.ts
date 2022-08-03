@@ -14,7 +14,7 @@ import {InformePago} from '../model/InformePago';
 
 export class ReservaService {
 
-  reservaCambio = new Subject<Reserva[]>();
+  reservaCambio = new Subject<Reserva>();
   complejoCambio = new Subject<Complejo>();
   canchaCambio = new Subject<Cancha>();
   fechaCambio = new Subject<Date>();
@@ -24,7 +24,7 @@ export class ReservaService {
   }
 
   public verDisponibilidad(idComplejo: number, idCancha: number, fecha: string) {
-    return this.httpClient.get<Reserva[]>(environment.url_gestionComplejos + `/reserva/verDisponibilidad`, {
+    return this.httpClient.get<Reserva[]>(environment.url_sejuegasgo + `/reserva/verDisponibilidad`, {
    /*   headers: new HttpHeaders().set('Authorization', `bearer ` + sessionStorage.getItem(environment.token)).set('Content-Type', 'application/json'),*/
       params: new HttpParams().set('idComplejo', idComplejo.toString())
         .set('idCancha', idCancha.toString())
@@ -33,46 +33,50 @@ export class ReservaService {
   }
 
   validarReglasReservaCreacion(reserva: Reserva){
-    return this.httpClient.post<ReglasReservaError>(environment.url_gestionComplejos + `/reserva/validarReglasCreacion`, reserva);
+    return this.httpClient.post<ReglasReservaError>(environment.url_sejuegasgo + `/reserva/validarReglasCreacion`, reserva);
   }
 
   configurarPreferenciaPago(reserva: Reserva){
-    return this.httpClient.post(environment.url_gestionComplejos + `/checkout/configurarPreferencia`, reserva, {
+    return this.httpClient.post(environment.url_sejuegasgo + `/checkout/configurarPreferencia`, reserva, {
       responseType: 'text'
     });
   }
 
   registrarReservaYPago(informePago: InformePago){
-    return this.httpClient.post<number>(environment.url_gestionComplejos + `/reserva/registrarReservaYPago`, informePago/*,{
+    return this.httpClient.post<number>(environment.url_sejuegasgo + `/reserva/registrarReservaYPago`, informePago/*,{
       headers: new HttpHeaders().set('Authorization', `bearer ` + sessionStorage.getItem(environment.token)).set('Content-Type', 'application/json')
     }*/);
   }
 
   listarPorUsuario(correo: string){
-    return this.httpClient.get<Reserva[]>(environment.url_gestionComplejos + `/reserva/listarPorJugador/${correo}`/*, {
+    return this.httpClient.get<Reserva[]>(environment.url_sejuegasgo + `/reserva/listarPorJugador/${correo}`/*, {
       headers: new HttpHeaders().set('Authorization', `bearer ` + sessionStorage.getItem(environment.token)).set('Content-Type', 'application/json')
     }*/);
   }
 
+  obtenerPorCodigo(codigo: string){
+    return this.httpClient.get<Reserva>(environment.url_sejuegasgo + `/reserva/obtenerPorCodigo/${codigo}`);
+  }
+
   validarReglasAnulacion(reserva: Reserva){
-    return this.httpClient.post<ReglasReservaError>(environment.url_gestionComplejos + `/reserva/validarReglasAnulacion`, reserva);
+    return this.httpClient.post<ReglasReservaError>(environment.url_sejuegasgo + `/reserva/validarReglasAnulacion`, reserva);
   }
 
   anular(reserva: Reserva){
-    return this.httpClient.put<number>(environment.url_gestionComplejos + `/reserva/anular`, reserva);
+    return this.httpClient.put<number>(environment.url_sejuegasgo + `/reserva/anular`, reserva);
   }
 
   calcularImporte(reserva: Reserva){
-    return this.httpClient.post<number>(environment.url_gestionComplejos + `/reserva/obtenerImporte`, reserva);
+    return this.httpClient.post<number>(environment.url_sejuegasgo + `/reserva/obtenerImporte`, reserva);
   }
 
   validarReglasEdicion(reserva: Reserva, reglaAvalidar: string){
-    return this.httpClient.post<ReglasReservaError>(environment.url_gestionComplejos + `/reserva/validarReglasEdicion`, reserva, {
+    return this.httpClient.post<ReglasReservaError>(environment.url_sejuegasgo + `/reserva/validarReglasEdicion`, reserva, {
       params: new HttpParams().set("reglaAValidar", reglaAvalidar)
     });
   }
 
   modificar(reserva: Reserva){
-    return this.httpClient.put<number>(environment.url_gestionComplejos + `/reserva/modificar`, reserva);
+    return this.httpClient.put<number>(environment.url_sejuegasgo + `/reserva/modificar`, reserva);
   }
 }

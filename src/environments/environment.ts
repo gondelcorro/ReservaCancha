@@ -7,8 +7,8 @@ export const environment = {
   token: 'access_token',
   user: 'username',
   url_login: 'http://localhost:5000', // Usada para el logout
-  url_gestionComplejos: "http://localhost:8080/futbolsantiago", // Usada para los services
-  url_dashboard: "http://localhost:4600/#/main-layout/dashboard" // usada para el logo
+  url_sejuegasgo: "http://localhost:8080/futbolsantiago", // Usada para los services
+  url_dashboard: "http://localhost:4600/#/main-layout/dashboard" // usada para el logo de la app
 };
 
 /*

@@ -11,11 +11,10 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {AnimationOptions} from 'ngx-lottie';
 import {MatStepper} from '@angular/material/stepper';
 import {MatSnackBar} from '@angular/material/snack-bar';
-import {InformePago} from '../../model/InformePago';
 import {MatDialog} from '@angular/material/dialog';
 import {ProcesandoReservaComponent} from './procesando-reserva/procesando-reserva.component';
-import {CrearReservaComponent} from './scheduler/crear-reserva/crear-reserva.component';
 import {CierreTemporalComponent} from './cierre-temporal/cierre-temporal.component';
+import {BreakpointObserver} from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-dashboard',
@@ -36,18 +35,20 @@ export class DashboardComponent implements OnInit {
   public minDate: Date;
   public maxDate: Date;
   public mostrarScheduler = false;
+  public mostrarStepper = true;
   public reservas: Reserva[];
   options1: AnimationOptions = {
-    path: '/assets/animations/goal.json', // download the JSON version of animation in your project directory and add the path to it like ./assets/animations/example.json
+    path: './assets/animations/goal.json', // download the JSON version of animation in your project directory and add the path to it like ./assets/animations/example.json
   };
   options: AnimationOptions = {
-    path: '/assets/animations/drone.json', // download the JSON version of animation in your project directory and add the path to it like ./assets/animations/example.json
+    path: './assets/animations/drone.json', // download the JSON version of animation in your project directory and add the path to it like ./assets/animations/example.json
   };
   reservaEdion: Reserva = null;//DESDE EL DASHBOARD SOLO SE CREA ASI Q LA PASO NULL
 
   constructor(private complejoService: ComplejoService, private canchaService: CanchaService,
               private reservaService: ReservaService, private datePipe: DatePipe, private router: Router,
-              private activeRoute: ActivatedRoute, private snackbar: MatSnackBar, private dialog: MatDialog) {
+              private activeRoute: ActivatedRoute, private snackbar: MatSnackBar, private dialog: MatDialog,
+              private mediaObserver: BreakpointObserver) {
 
     this.formGroupComplejo = new FormGroup({
       'complejo': new FormControl('', [Validators.required])
@@ -65,6 +66,18 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.mediaObserver.observe(['(min-width: 0px)','(max-width: 750px)']).subscribe(result => {
+      if(result.matches && this.mostrarScheduler){
+        this.mostrarStepper = false;
+        this.mostrarScheduler = true;
+      }
+    });
+    this.mediaObserver.observe('(min-width: 750px)').subscribe(result => {
+      if(result.matches && this.mostrarScheduler){
+        this.mostrarStepper = true;
+      }
+    });
+
     this.activeRoute.queryParams.subscribe(queryParams => {
       if (queryParams.external_reference != null) {
         if (queryParams.status == 'approved') {
@@ -120,6 +133,12 @@ export class DashboardComponent implements OnInit {
   }
 
   public setMostrarScheduler() {
+    this.mostrarScheduler =true;
+    this.mediaObserver.observe('(max-width: 750px)').subscribe(result => {
+      if(result.matches && this.mostrarScheduler){
+        this.mostrarStepper = false;
+      }
+    });
     if (!this.selectedComplejo.cierreTemporal) {
       console.log('SELECTED FECHA: ' + this.selectedFecha);
       if (this.validarDiasAtencion(this.selectedFecha)){
@@ -130,7 +149,7 @@ export class DashboardComponent implements OnInit {
           console.log('RESPUESTA: ' + JSON.stringify(resp));
           this.reservas = resp;
           /*Actualizo los subject con la respuesa del service que es un Reserva[]*/
-          this.reservaService.reservaCambio.next(this.reservas);
+          this.reservaService.listadoReservasCambio.next(this.reservas);
           this.reservaService.complejoCambio.next(this.selectedComplejo);
           this.reservaService.canchaCambio.next(this.selectedCancha);
           this.reservaService.fechaCambio.next(this.selectedFecha);

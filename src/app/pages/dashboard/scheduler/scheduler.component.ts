@@ -90,15 +90,18 @@ export class SchedulerComponent implements OnInit {
 
   ngOnInit(): void {
     /*Para la primera vez, tomo la fecha y reservas q le paso desde el componente padre*/
-    this.schedulerService.cargarReservasEnScheduler(this.actions, this.reservas)
-      .then((events: CalendarSchedulerEvent[]) => this.events = events);
-    this.changeDate(this.fecha);
+    if(this.reservas!){
+      this.schedulerService.cargarReservasEnScheduler(this.actions, this.reservas)
+        .then((events: CalendarSchedulerEvent[]) => this.events = events);
+      this.changeDate(this.fecha);
+    }
+
     /*La primera vez no se ejecuta el subject xq no detecta cambio, pero para la 2da en adelante
       cuando modifique fecha y vuelva a dar verDisponibilidad se ejectua el suscribe del subject*/
-    this.reservaService.reservaCambio.subscribe(data => {
+    this.reservaService.listadoReservasCambio.subscribe(data => {
       console.log('RESERVAS CAMBIO: ' + JSON.stringify(data));
       this.reservas = data;
-      if (this.reservas.length > 0) {
+      if (this.reservas!.length > 0) {
         this.schedulerService.cargarReservasEnScheduler(this.actions, this.reservas)
           .then((events: CalendarSchedulerEvent[]) => this.events = events);
         let dia = Number(this.reservas[0].fecha.substring(0, 2));
@@ -112,6 +115,10 @@ export class SchedulerComponent implements OnInit {
           this.changeDate(fechaCambio);
         });
       }
+    });
+    this.reservaService.fechaCambio.subscribe(fechaCambio => {
+      this.events = [];
+      this.changeDate(fechaCambio);
     });
   }
 

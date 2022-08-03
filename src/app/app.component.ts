@@ -3,7 +3,6 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {environment} from 'src/environments/environment';
 import * as decode from 'jwt-decode';
 import {Subject} from 'rxjs';
-import {MatSnackBar} from '@angular/material/snack-bar';
 import {LoaderService} from './shared/loader.service';
 
 @Component({

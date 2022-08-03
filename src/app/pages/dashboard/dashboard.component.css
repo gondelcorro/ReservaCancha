@@ -1,8 +1,6 @@
 .example-container {
   width: 100%;
   height: 91vh;
-/*  padding-left: 10px;
-  border: 1px solid #555;*/
 }
 
 .margin-left{
@@ -12,3 +10,9 @@
 h3{
   margin-bottom: 5px;
 }
+
+/*
+@media screen and (min-width: 0px) and (max-width: 430px) {
+  #drawerReserva { display: none; }   !* hide it elsewhere *!
+}
+*/

@@ -16,10 +16,10 @@ export class JugadorService {
   }
 
   obtenerJugador(correo: string){
-    return this.http.get<Jugador>(environment.url_gestionComplejos + `/jugador/obtenerPorCorreo/${correo}`);
+    return this.http.get<Jugador>(environment.url_sejuegasgo + `/jugador/obtenerPorCorreo/${correo}`);
   }
 
   modificarDatos(jugador: Jugador){
-    return this.http.put<number>(environment.url_gestionComplejos + `/jugador/modificar-datos`, jugador);
+    return this.http.put<number>(environment.url_sejuegasgo + `/jugador/modificar-datos`, jugador);
   }
 }

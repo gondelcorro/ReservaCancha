@@ -11,11 +11,11 @@ export class ComplejoService {
   constructor(private http: HttpClient) { }
 
   public listarComplejos(){
-    return this.http.get<Complejo[]>(environment.url_gestionComplejos + `/complejo/listar`);
+    return this.http.get<Complejo[]>(environment.url_sejuegasgo + `/complejo/listar`);
   }
 
   leerArchivo(idComplejo: number, imgOrLogo:  number) {
-    return this.http.get(environment.url_gestionComplejos + "/complejo/leerArchivo/" + `${idComplejo}` + "/" + `${imgOrLogo}` , {
+    return this.http.get(environment.url_sejuegasgo + "/complejo/leerArchivo/" + `${idComplejo}` + "/" + `${imgOrLogo}` , {
       responseType: 'blob' //es blob xq recibe una secuencia de bytes
     });
   }

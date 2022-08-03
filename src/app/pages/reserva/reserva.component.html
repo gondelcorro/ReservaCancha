@@ -6,11 +6,11 @@
       <div>
         <h1><strong>&nbsp; Tus reservas</strong></h1>
       </div>
-      <mat-form-field appearance="standard" style="width: 100%" *ngIf="listaReservas.data != 0">
+      <mat-form-field appearance="standard" style="width: 100%" *ngIf="listaReservas?.data != 0">
         <mat-label>Búsqueda</mat-label>
         <input #input matInput (keyup)="applyFilter($event)" placeholder="Ingrese el código de reserva, o busque por complejo o fecha" >
       </mat-form-field>
-      <table mat-table [dataSource]="listaReservas" class="mat-elevation-z2" *ngIf="listaReservas.data != 0">
+      <table mat-table [dataSource]="listaReservas" class="mat-elevation-z2" *ngIf="listaReservas?.data != 0">
         <ng-container matColumnDef="complejo">
           <th mat-header-cell *matHeaderCellDef> Complejo</th>
           <td mat-cell *matCellDef="let reserva">{{reserva.complejo.nombre}} </td>
@@ -55,9 +55,9 @@
           <td class="mat-cell" colspan="6" *ngIf="input.value != '' ">Ningún registro coincide con el valor de búsqueda ingresado "{{input.value}}"</td>
         </tr>-->
       </table>
-      <mat-paginator *ngIf="listaReservas.data != 0" [pageSizeOptions]="[10, 20, 30]" [length]="cantidad" showFirstLastButtons></mat-paginator>
+      <mat-paginator *ngIf="listaReservas?.data != 0" [pageSizeOptions]="[10, 20, 30]" [length]="cantidad" showFirstLastButtons></mat-paginator>
 
-      <div *ngIf="listaReservas.data == 0">
+      <div *ngIf="listaReservas?.data == 0">
         <h2 style="margin-left: 20px">* Aún no tenes reservas registradas.</h2>
       </div>
 
@@ -70,7 +70,7 @@
     </button>
     <br/><br/>
     <div *ngIf="reservaSelect!=null">
-      <app-detalle-reserva [reservaSelected]="reservaSelect" [litaPagos]="listaPagos"></app-detalle-reserva>
+      <app-detalle-reserva [reservaSelected]="reservaSelect" [listaPagos]="listaPagos"></app-detalle-reserva>
     </div>
   </mat-sidenav>
 

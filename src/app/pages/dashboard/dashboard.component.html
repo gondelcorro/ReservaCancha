@@ -1,5 +1,5 @@
 <mat-drawer-container class="example-container">
-  <mat-drawer mode="side" opened>
+  <mat-drawer mode="side" [opened]="mostrarStepper">
     <br><!--<br><br>-->
     <div align="center" style="color: forestgreen">
       <ng-lottie width="230px"
@@ -101,7 +101,7 @@
     </mat-vertical-stepper>
   </mat-drawer>
 
-  <mat-drawer-content class="margin-left">
+  <mat-drawer-content >
     <div align="center" style="margin-top: 17%" *ngIf="!mostrarScheduler" >
       <ng-lottie width="400px"
                  height="300px"

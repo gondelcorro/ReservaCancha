@@ -17,7 +17,7 @@ import {Form, FormControl, FormGroup, Validators} from '@angular/forms';
 export class EditarReservaComponent implements OnInit {
 
   public selectedComplejo: Complejo;
-  public canchas: Cancha[];
+  public canchas: Cancha[] = [];
   public selectedCancha: Cancha;
   public selectedFecha: Date;
   public minDate: Date;
@@ -79,7 +79,7 @@ export class EditarReservaComponent implements OnInit {
       console.log("RESPUESTA: " + JSON.stringify(resp));
       this.reservas = resp;
       /*Actualizo los subject con la respuesa del service que es un Reserva[]*/
-      this.reservaService.reservaCambio.next(this.reservas);
+      this.reservaService.listadoReservasCambio.next(this.reservas);
       this.reservaService.complejoCambio.next(this.selectedComplejo);
       this.reservaService.canchaCambio.next(this.selectedCancha);
       this.reservaService.fechaCambio.next(this.selectedFecha);

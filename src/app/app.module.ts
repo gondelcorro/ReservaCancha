@@ -31,7 +31,8 @@ import {FlexLayoutModule} from '@angular/flex-layout';
 import { ProcesandoReservaComponent } from './pages/dashboard/procesando-reserva/procesando-reserva.component';
 import player from 'lottie-web';
 import { CierreTemporalComponent } from './pages/dashboard/cierre-temporal/cierre-temporal.component';
-import { AnulacionComponent } from './pages/reserva/anulacion/anulacion.component';// add this lines for lotties
+import { AnulacionComponent } from './pages/reserva/anulacion/anulacion.component';
+import { AbonarFechaComponent } from './pages/reserva/abonar-fecha/abonar-fecha.component';// add this lines for lotties
 export function playerFactory() {
   return player;
 }
@@ -54,7 +55,8 @@ registerLocaleData(localeEsAr, 'es-Ar');
     JugadorComponent,
     ProcesandoReservaComponent,
     CierreTemporalComponent,
-    AnulacionComponent
+    AnulacionComponent,
+    AbonarFechaComponent
   ],
   imports: [
     BrowserModule,
