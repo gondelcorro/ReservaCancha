@@ -103,6 +103,7 @@ export class DashboardComponent implements OnInit {
   }
 
   public async cargarCancha(stepper: MatStepper) {
+    this.canchas.length = 0;
       this.canchaService.listarPorComplejo(this.selectedComplejo.idComplejo).subscribe(canchas => {
         canchas.forEach( cancha => {
           if(cancha.habilitada){
