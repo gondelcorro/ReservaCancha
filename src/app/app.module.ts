@@ -27,10 +27,11 @@ import {ComplejoComponent} from './pages/complejo/complejo.component';
 import { CanchaComponent } from './pages/complejo/cancha/cancha.component';
 import { JugadorComponent } from './pages/jugador/jugador.component';
 import { ProcesandoReservaComponent } from './pages/dashboard/procesando-reserva/procesando-reserva.component';
-import player from 'lottie-web';
 import { CierreTemporalComponent } from './pages/dashboard/cierre-temporal/cierre-temporal.component';
 import { AnulacionComponent } from './pages/reserva/anulacion/anulacion.component';
 import { AbonarFechaComponent } from './pages/reserva/abonar-fecha/abonar-fecha.component';// add this lines for lotties
+import {AvatarModule} from 'ngx-avatars';
+import player from 'lottie-web';
 export function playerFactory() {
   return player;
 }
@@ -69,6 +70,7 @@ registerLocaleData(localeEsAr, 'es-Ar');
     NgxMatTimepickerModule, //npm i ngx-mat-timepicker (Este es el q estoy usando)
     NgxMaterialTimepickerModule, // npm install --save ngx-material-timepicker
     LottieModule.forRoot({ player: playerFactory}), // npm i lottie-web ngx-lottie
+    AvatarModule
   ],
   providers: [
     {
