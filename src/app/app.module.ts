@@ -9,7 +9,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { MainLayoutComponent } from './pages/main-layout/main-layout.component';
 import { ReservaComponent } from './pages/reserva/reserva.component';
-import { AvatarModule } from 'ngx-avatar';
 import {SchedulerModule} from 'angular-calendar-scheduler';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { SchedulerComponent } from './pages/dashboard/scheduler/scheduler.component';
@@ -27,7 +26,6 @@ import { DetalleReservaComponent } from './pages/reserva/detalle-reserva/detalle
 import {ComplejoComponent} from './pages/complejo/complejo.component';
 import { CanchaComponent } from './pages/complejo/cancha/cancha.component';
 import { JugadorComponent } from './pages/jugador/jugador.component';
-import {FlexLayoutModule} from '@angular/flex-layout';
 import { ProcesandoReservaComponent } from './pages/dashboard/procesando-reserva/procesando-reserva.component';
 import player from 'lottie-web';
 import { CierreTemporalComponent } from './pages/dashboard/cierre-temporal/cierre-temporal.component';
@@ -66,13 +64,11 @@ registerLocaleData(localeEsAr, 'es-Ar');
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    AvatarModule, // npm install ngx-avatar --save
     //CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory }), // ng add angular-calendar
     SchedulerModule.forRoot({ locale: 'es', headerDateFormat: 'daysRange' }), //npm install angular-calendar-scheduler date-fns --save
     NgxMatTimepickerModule, //npm i ngx-mat-timepicker (Este es el q estoy usando)
     NgxMaterialTimepickerModule, // npm install --save ngx-material-timepicker
     LottieModule.forRoot({ player: playerFactory}), // npm i lottie-web ngx-lottie
-    FlexLayoutModule //npm i @angular/flex-layout
   ],
   providers: [
     {
