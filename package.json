@@ -29,6 +29,7 @@
     "lottie-web": "^5.7.12",
     "moment": "^2.29.1",
     "ngx-avatar": "^4.0.0",
+    "ngx-avatars": "^1.1.0",
     "ngx-lottie": "^7.0.3",
     "ngx-mat-timepicker": "^10.0.3",
     "ngx-material-timepicker": "^5.5.3",
