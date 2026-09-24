@@ -1,7 +1,7 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {DatePipe} from '@angular/common';
-import {FormControl, FormGroup} from '@angular/forms';
+import {UntypedFormControl, UntypedFormGroup} from '@angular/forms';
 import {ReservaService} from '../../../../service/reserva.service';
 import {Reserva} from '../../../../model/reserva';
 import {MatSnackBar} from '@angular/material/snack-bar';
@@ -15,7 +15,7 @@ import {environment} from '../../../../../environments/environment';
   styleUrls: ['./crear-reserva.component.css']
 })
 export class CrearReservaComponent implements OnInit {
-  form: FormGroup;
+  form: UntypedFormGroup;
   format = 24;
   minutesGap = 30;
   fechaFormateada: string;
@@ -29,7 +29,7 @@ export class CrearReservaComponent implements OnInit {
               private datePipe: DatePipe, private reservaService: ReservaService, private snackBar: MatSnackBar,
               private jugadorServiceShared: JugadorSharedService) {
 
-    this.form = new FormGroup({'horaFin': new FormControl(''),});
+    this.form = new UntypedFormGroup({'horaFin': new UntypedFormControl(''),});
     this.fechaFormateada = this.datePipe.transform(data.fechaReserva, 'dd-MM-yyyy');
     this.horaInicio = this.datePipe.transform(data.fechaReserva, 'HH:mm');
   }

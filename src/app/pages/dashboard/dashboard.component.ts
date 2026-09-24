@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {UntypedFormControl, UntypedFormGroup, Validators} from '@angular/forms';
 import {Complejo} from '../../model/complejo';
 import {Cancha} from '../../model/cancha';
 import {ComplejoService} from '../../service/complejo.service';
@@ -23,9 +23,9 @@ import {BreakpointObserver} from '@angular/cdk/layout';
 })
 export class DashboardComponent implements OnInit {
 
-  public formGroupComplejo: FormGroup;
-  public formGroupCancha: FormGroup;
-  public formGroupFecha: FormGroup;
+  public formGroupComplejo: UntypedFormGroup;
+  public formGroupCancha: UntypedFormGroup;
+  public formGroupFecha: UntypedFormGroup;
 
   public complejos: Complejo[] = [];
   public canchas: Cancha[] = [];
@@ -50,14 +50,14 @@ export class DashboardComponent implements OnInit {
               private activeRoute: ActivatedRoute, private snackbar: MatSnackBar, private dialog: MatDialog,
               private mediaObserver: BreakpointObserver) {
 
-    this.formGroupComplejo = new FormGroup({
-      'complejo': new FormControl('', [Validators.required])
+    this.formGroupComplejo = new UntypedFormGroup({
+      'complejo': new UntypedFormControl('', [Validators.required])
     });
-    this.formGroupCancha = new FormGroup({
-      'cancha': new FormControl('', [Validators.required])
+    this.formGroupCancha = new UntypedFormGroup({
+      'cancha': new UntypedFormControl('', [Validators.required])
     });
-    this.formGroupFecha = new FormGroup({
-      'fecha': new FormControl('', [Validators.required])
+    this.formGroupFecha = new UntypedFormGroup({
+      'fecha': new UntypedFormControl('', [Validators.required])
     });
 
     this.minDate = new Date(); //Fecha actual

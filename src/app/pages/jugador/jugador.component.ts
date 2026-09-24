@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormControl, FormGroup, NgForm, Validators} from '@angular/forms';
+import {UntypedFormControl, UntypedFormGroup, NgForm, Validators} from '@angular/forms';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {Jugador} from '../../model/jugador';
 import {JugadorService} from '../../service/jugador.service';
@@ -12,19 +12,19 @@ import {JugadorSharedService} from '../../shared/jugador-shared.service';
 })
 export class JugadorComponent implements OnInit {
 
-  form: FormGroup;
+  form: UntypedFormGroup;
   public hidePass = true;
   public hidePassConfirm = true;
   jugador: Jugador;
 
   constructor(private _snackBar: MatSnackBar, private jugadorService: JugadorService, private jugadorShared: JugadorSharedService) {
-    this.form = new FormGroup({
-      'nomyape': new FormControl('', [Validators.pattern('^[a-zA-Z ]*$')]),
-      'telefono': new FormControl('', [Validators.required, Validators.minLength(6),
+    this.form = new UntypedFormGroup({
+      'nomyape': new UntypedFormControl('', [Validators.pattern('^[a-zA-Z ]*$')]),
+      'telefono': new UntypedFormControl('', [Validators.required, Validators.minLength(6),
         Validators.maxLength(11), Validators.pattern('^([0-9])*$')]),
-      'correo': new FormControl('', [Validators.required, , Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')]),
-      'clave': new FormControl('', [Validators.required, Validators.pattern('^(?=.*[A-Za-z])(?=.*[0-9]).{10,}$')]),
-      'confirmaClave': new FormControl()
+      'correo': new UntypedFormControl('', [Validators.required, , Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')]),
+      'clave': new UntypedFormControl('', [Validators.required, Validators.pattern('^(?=.*[A-Za-z])(?=.*[0-9]).{10,}$')]),
+      'confirmaClave': new UntypedFormControl()
     });
     this.form.controls['confirmaClave'].setValidators([Validators.required, this.coincidenClaves.bind(this)]);
   }
@@ -67,7 +67,7 @@ export class JugadorComponent implements OnInit {
     });
   }
 
-  coincidenClaves(control: FormControl): { [s: string]: boolean } {
+  coincidenClaves(control: UntypedFormControl): { [s: string]: boolean } {
     return control.value != this.form.controls['clave'].value ? {coinciden: false} : null;
   }
 
