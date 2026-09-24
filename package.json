@@ -30,7 +30,7 @@
     "moment": "^2.29.1",
     "ngx-avatars": "^1.4.1",
     "ngx-lottie": "^7.0.3",
-    "ngx-mat-timepicker": "^14.0.6",
+    "ngx-mat-timepicker": "^15.1.7",
     "ngx-material-timepicker": "^5.5.3",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
