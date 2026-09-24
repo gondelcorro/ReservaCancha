@@ -1,9 +1,9 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {environment} from '../../../../environments/environment';
 import {ReservaService} from '../../../service/reserva.service';
-import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
+import {MAT_LEGACY_DIALOG_DATA as MAT_DIALOG_DATA, MatLegacyDialogRef as MatDialogRef} from '@angular/material/legacy-dialog';
 import {Reserva} from '../../../model/reserva';
-import {MatSnackBar} from '@angular/material/snack-bar';
+import {MatLegacySnackBar as MatSnackBar} from '@angular/material/legacy-snack-bar';
 import {ReservaComponent} from '../reserva.component';
 
 @Component({

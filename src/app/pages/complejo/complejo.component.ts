@@ -4,7 +4,7 @@ import {Complejo} from '../../model/complejo';
 import {DomSanitizer} from '@angular/platform-browser';
 import {ComplejoConImg} from '../../model/complejoConImg';
 import {CrearReservaComponent} from '../dashboard/scheduler/crear-reserva/crear-reserva.component';
-import {MatDialog} from '@angular/material/dialog';
+import {MatLegacyDialog as MatDialog} from '@angular/material/legacy-dialog';
 import {CanchaComponent} from './cancha/cancha.component';
 import {CanchaService} from '../../service/cancha.service';
 import {Cancha} from '../../model/cancha';

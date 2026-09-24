@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {UntypedFormControl, UntypedFormGroup, NgForm, Validators} from '@angular/forms';
-import {MatSnackBar} from '@angular/material/snack-bar';
+import {MatLegacySnackBar as MatSnackBar} from '@angular/material/legacy-snack-bar';
 import {Jugador} from '../../model/jugador';
 import {JugadorService} from '../../service/jugador.service';
 import {JugadorSharedService} from '../../shared/jugador-shared.service';

@@ -3,7 +3,7 @@ import {Reserva} from '../../../model/reserva';
 import {PagoService} from '../../../service/pago.service';
 import {Pago} from '../../../model/pago';
 import {AbonarFechaComponent} from '../abonar-fecha/abonar-fecha.component';
-import {MatDialog} from '@angular/material/dialog';
+import {MatLegacyDialog as MatDialog} from '@angular/material/legacy-dialog';
 import {EstadoReserva} from '../../../model/estadoReserva';
 
 @Component({

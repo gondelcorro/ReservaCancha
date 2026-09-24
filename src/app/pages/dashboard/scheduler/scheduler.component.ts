@@ -10,11 +10,11 @@ import {Subject} from 'rxjs';
 import {Reserva} from '../../../model/reserva';
 import {ReservaService} from '../../../service/reserva.service';
 import {Complejo} from '../../../model/complejo';
-import {MatDialog} from '@angular/material/dialog';
+import {MatLegacyDialog as MatDialog} from '@angular/material/legacy-dialog';
 import {CrearReservaComponent} from './crear-reserva/crear-reserva.component';
 import {Cancha} from '../../../model/cancha';
 import {SchedulerService} from '../../../service/scheduler.service';
-import {MatSnackBar} from '@angular/material/snack-bar';
+import {MatLegacySnackBar as MatSnackBar} from '@angular/material/legacy-snack-bar';
 
 @Component({
   selector: 'app-scheduler',
