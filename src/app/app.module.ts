@@ -21,7 +21,6 @@ import { EditarReservaComponent } from './pages/reserva/editar-reserva/editar-re
 import { ErrorServerComponent } from './error/error-server/error-server.component';
 import { NotFoundComponent } from './error/not-found/not-found.component';
 import {TokenInterceptor} from './shared/token.interceptor';
-import {LottieModule} from 'ngx-lottie';
 import { DetalleReservaComponent } from './pages/reserva/detalle-reserva/detalle-reserva.component';
 import {ComplejoComponent} from './pages/complejo/complejo.component';
 import { CanchaComponent } from './pages/complejo/cancha/cancha.component';
@@ -31,10 +30,13 @@ import { CierreTemporalComponent } from './pages/dashboard/cierre-temporal/cierr
 import { AnulacionComponent } from './pages/reserva/anulacion/anulacion.component';
 import { AbonarFechaComponent } from './pages/reserva/abonar-fecha/abonar-fecha.component';// add this lines for lotties
 import {AvatarModule} from 'ngx-avatars';
-import player from 'lottie-web';
+import {LottieModule} from 'ngx-lottie';
 export function playerFactory() {
-  return player;
+  return import('lottie-web');
 }
+//export function playerFactory() {
+//  return player;
+//}
 registerLocaleData(localeEsAr, 'es-Ar');
 
 @NgModule({
