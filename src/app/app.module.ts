@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { MainLayoutComponent } from './pages/main-layout/main-layout.component';
 import { ReservaComponent } from './pages/reserva/reserva.component';
 import {SchedulerModule} from 'angular-calendar-scheduler';
@@ -39,53 +39,47 @@ export function playerFactory() {
 //}
 registerLocaleData(localeEsAr, 'es-Ar');
 
-@NgModule({
-  declarations: [
-    AppComponent,
-    MainLayoutComponent,
-    ReservaComponent,
-    ComplejoComponent,
-    DashboardComponent,
-    SchedulerComponent,
-    CrearReservaComponent,
-    EditarReservaComponent,
-    ErrorServerComponent,
-    NotFoundComponent,
-    DetalleReservaComponent,
-    CanchaComponent,
-    JugadorComponent,
-    ProcesandoReservaComponent,
-    CierreTemporalComponent,
-    AnulacionComponent,
-    AbonarFechaComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    MaterialModule,
-    HttpClientModule,
-    FormsModule,
-    ReactiveFormsModule,
-    //CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory }), // ng add angular-calendar
-    SchedulerModule.forRoot({ locale: 'es', headerDateFormat: 'daysRange' }), //npm install angular-calendar-scheduler date-fns --save
-    NgxMatTimepickerModule, //npm i ngx-mat-timepicker (Este es el q estoy usando)
-    NgxMaterialTimepickerModule, // npm install --save ngx-material-timepicker
-    LottieModule.forRoot({ player: playerFactory}), // npm i lottie-web ngx-lottie
-    AvatarModule
-  ],
-  providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: TokenInterceptor,
-      multi: true
-    },
-    {
-      provide: LOCALE_ID,
-      useValue: 'es-AR'
-    },
-    DatePipe
-  ],
-  bootstrap: [AppComponent]
-})
+@NgModule({ declarations: [
+        AppComponent,
+        MainLayoutComponent,
+        ReservaComponent,
+        ComplejoComponent,
+        DashboardComponent,
+        SchedulerComponent,
+        CrearReservaComponent,
+        EditarReservaComponent,
+        ErrorServerComponent,
+        NotFoundComponent,
+        DetalleReservaComponent,
+        CanchaComponent,
+        JugadorComponent,
+        ProcesandoReservaComponent,
+        CierreTemporalComponent,
+        AnulacionComponent,
+        AbonarFechaComponent
+    ],
+    bootstrap: [AppComponent], imports: [BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        MaterialModule,
+        FormsModule,
+        ReactiveFormsModule,
+        //CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory }), // ng add angular-calendar
+        SchedulerModule.forRoot({ locale: 'es', headerDateFormat: 'daysRange' }), //npm install angular-calendar-scheduler date-fns --save
+        NgxMatTimepickerModule, //npm i ngx-mat-timepicker (Este es el q estoy usando)
+        NgxMaterialTimepickerModule, // npm install --save ngx-material-timepicker
+        LottieModule.forRoot({ player: playerFactory }), // npm i lottie-web ngx-lottie
+        AvatarModule], providers: [
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: TokenInterceptor,
+            multi: true
+        },
+        {
+            provide: LOCALE_ID,
+            useValue: 'es-AR'
+        },
+        DatePipe,
+        provideHttpClient(withInterceptorsFromDi())
+    ] })
 export class AppModule { }
