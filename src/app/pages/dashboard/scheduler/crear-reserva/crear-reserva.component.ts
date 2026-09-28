@@ -1,10 +1,10 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {MAT_LEGACY_DIALOG_DATA as MAT_DIALOG_DATA, MatLegacyDialogRef as MatDialogRef} from '@angular/material/legacy-dialog';
+import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {DatePipe} from '@angular/common';
 import {UntypedFormControl, UntypedFormGroup} from '@angular/forms';
 import {ReservaService} from '../../../../service/reserva.service';
 import {Reserva} from '../../../../model/reserva';
-import {MatLegacySnackBar as MatSnackBar} from '@angular/material/legacy-snack-bar';
+import {MatSnackBar} from '@angular/material/snack-bar';
 import {JugadorSharedService} from '../../../../shared/jugador-shared.service';
 import {EstadoReserva} from '../../../../model/estadoReserva';
 import {environment} from '../../../../../environments/environment';

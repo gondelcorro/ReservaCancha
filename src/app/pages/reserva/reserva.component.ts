@@ -1,8 +1,8 @@
 import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {MatSort} from '@angular/material/sort';
-import {MatLegacyTableDataSource as MatTableDataSource} from '@angular/material/legacy-table';
-import {MatLegacySnackBar as MatSnackBar} from '@angular/material/legacy-snack-bar';
-import {MatLegacyDialog as MatDialog} from '@angular/material/legacy-dialog';
+import {MatTableDataSource} from '@angular/material/table';
+import {MatSnackBar} from '@angular/material/snack-bar';
+import {MatDialog} from '@angular/material/dialog';
 import {ReservaService} from '../../service/reserva.service';
 import {Reserva} from '../../model/reserva';
 import {JugadorSharedService} from '../../shared/jugador-shared.service';
@@ -11,7 +11,7 @@ import {EditarReservaComponent} from './editar-reserva/editar-reserva.component'
 import {EstadoReserva} from '../../model/estadoReserva';
 import {Pago} from '../../model/pago';
 import {PagoService} from '../../service/pago.service';
-import {MatLegacyPaginator as MatPaginator} from '@angular/material/legacy-paginator';
+import {MatPaginator} from '@angular/material/paginator';
 import {AnulacionComponent} from './anulacion/anulacion.component';
 
 @Component({

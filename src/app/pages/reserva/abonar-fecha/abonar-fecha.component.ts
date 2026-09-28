@@ -1,8 +1,7 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {MAT_LEGACY_DIALOG_DATA as MAT_DIALOG_DATA, MatLegacyDialogRef as MatDialogRef} from '@angular/material/legacy-dialog';
+import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {ReservaService} from '../../../service/reserva.service';
-import {MatLegacySnackBar as MatSnackBar} from '@angular/material/legacy-snack-bar';
-import {TurnoFijoService} from '../../../service/turno-fijo.service';
+import {MatSnackBar} from '@angular/material/snack-bar';
 import {Reserva} from '../../../model/reserva';
 
 @Component({
