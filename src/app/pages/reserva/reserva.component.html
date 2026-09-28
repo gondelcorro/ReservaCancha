@@ -6,7 +6,7 @@
       <div>
         <h1><strong>&nbsp; Tus reservas</strong></h1>
       </div>
-      <mat-form-field appearance="standard" style="width: 100%" *ngIf="listaReservas?.data != 0">
+      <mat-form-field appearance="fill" style="width: 100%" *ngIf="listaReservas?.data != 0">
         <mat-label>Búsqueda</mat-label>
         <input #input matInput (keyup)="applyFilter($event)" placeholder="Ingrese el código de reserva, o busque por complejo o fecha" >
       </mat-form-field>
