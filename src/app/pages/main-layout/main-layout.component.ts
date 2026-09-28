@@ -7,9 +7,10 @@ import {JugadorService} from '../../service/jugador.service';
 import {environment} from '../../../environments/environment';
 
 @Component({
-  selector: 'app-main-layout',
-  templateUrl: './main-layout.component.html',
-  styleUrls: ['./main-layout.component.css']
+    selector: 'app-main-layout',
+    templateUrl: './main-layout.component.html',
+    styleUrls: ['./main-layout.component.css'],
+    standalone: false
 })
 export class MainLayoutComponent implements OnInit {
 

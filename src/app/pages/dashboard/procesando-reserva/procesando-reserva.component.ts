@@ -6,9 +6,10 @@ import {ReservaService} from '../../../service/reserva.service';
 import {TurnoFijoService} from '../../../service/turno-fijo.service';
 
 @Component({
-  selector: 'app-procesando-reserva',
-  templateUrl: './procesando-reserva.component.html',
-  styleUrls: ['./procesando-reserva.component.css']
+    selector: 'app-procesando-reserva',
+    templateUrl: './procesando-reserva.component.html',
+    styleUrls: ['./procesando-reserva.component.css'],
+    standalone: false
 })
 export class ProcesandoReservaComponent implements OnInit {
 

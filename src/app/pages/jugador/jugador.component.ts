@@ -6,9 +6,10 @@ import {JugadorService} from '../../service/jugador.service';
 import {JugadorSharedService} from '../../shared/jugador-shared.service';
 
 @Component({
-  selector: 'app-jugador',
-  templateUrl: './jugador.component.html',
-  styleUrls: ['./jugador.component.css']
+    selector: 'app-jugador',
+    templateUrl: './jugador.component.html',
+    styleUrls: ['./jugador.component.css'],
+    standalone: false
 })
 export class JugadorComponent implements OnInit {
 

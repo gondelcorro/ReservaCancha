@@ -6,9 +6,10 @@ import {MatDialog} from '@angular/material/dialog';
 import {EstadoReserva} from '../../../model/estadoReserva';
 
 @Component({
-  selector: 'app-detalle-reserva',
-  templateUrl: './detalle-reserva.component.html',
-  styleUrls: ['./detalle-reserva.component.css']
+    selector: 'app-detalle-reserva',
+    templateUrl: './detalle-reserva.component.html',
+    styleUrls: ['./detalle-reserva.component.css'],
+    standalone: false
 })
 export class DetalleReservaComponent implements OnInit {
 

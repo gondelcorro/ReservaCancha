@@ -10,9 +10,10 @@ import {Router} from '@angular/router';
 import {Form, UntypedFormControl, UntypedFormGroup, Validators} from '@angular/forms';
 
 @Component({
-  selector: 'app-editar-reserva',
-  templateUrl: './editar-reserva.component.html',
-  styleUrls: ['./editar-reserva.component.css']
+    selector: 'app-editar-reserva',
+    templateUrl: './editar-reserva.component.html',
+    styleUrls: ['./editar-reserva.component.css'],
+    standalone: false
 })
 export class EditarReservaComponent implements OnInit {
 

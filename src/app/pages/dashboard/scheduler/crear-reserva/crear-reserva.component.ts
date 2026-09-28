@@ -10,9 +10,10 @@ import {EstadoReserva} from '../../../../model/estadoReserva';
 import {environment} from '../../../../../environments/environment';
 
 @Component({
-  selector: 'app-crear-reserva',
-  templateUrl: './crear-reserva.component.html',
-  styleUrls: ['./crear-reserva.component.css']
+    selector: 'app-crear-reserva',
+    templateUrl: './crear-reserva.component.html',
+    styleUrls: ['./crear-reserva.component.css'],
+    standalone: false
 })
 export class CrearReservaComponent implements OnInit {
   form: UntypedFormGroup;

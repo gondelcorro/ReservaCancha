@@ -5,9 +5,10 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 import {Reserva} from '../../../model/reserva';
 
 @Component({
-  selector: 'app-abonar-fecha',
-  templateUrl: './abonar-fecha.component.html',
-  styleUrls: ['./abonar-fecha.component.css']
+    selector: 'app-abonar-fecha',
+    templateUrl: './abonar-fecha.component.html',
+    styleUrls: ['./abonar-fecha.component.css'],
+    standalone: false
 })
 export class AbonarFechaComponent implements OnInit {
 

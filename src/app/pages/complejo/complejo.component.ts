@@ -8,9 +8,10 @@ import {CanchaComponent} from './cancha/cancha.component';
 import {CanchaService} from '../../service/cancha.service';
 
 @Component({
-  selector: 'app-complejo',
-  templateUrl: './complejo.component.html',
-  styleUrls: ['./complejo.component.css']
+    selector: 'app-complejo',
+    templateUrl: './complejo.component.html',
+    styleUrls: ['./complejo.component.css'],
+    standalone: false
 })
 export class ComplejoComponent implements OnInit {
 

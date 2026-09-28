@@ -15,9 +15,10 @@ import {MatPaginator} from '@angular/material/paginator';
 import {AnulacionComponent} from './anulacion/anulacion.component';
 
 @Component({
-  selector: 'app-reserva',
-  templateUrl: './reserva.component.html',
-  styleUrls: ['./reserva.component.css']
+    selector: 'app-reserva',
+    templateUrl: './reserva.component.html',
+    styleUrls: ['./reserva.component.css'],
+    standalone: false
 })
 export class ReservaComponent implements OnInit, AfterViewInit {
   reservaSelect: Reserva;

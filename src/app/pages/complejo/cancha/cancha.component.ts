@@ -3,9 +3,10 @@ import {Cancha} from '../../../model/cancha';
 import {MAT_DIALOG_DATA} from '@angular/material/dialog';
 
 @Component({
-  selector: 'app-cancha',
-  templateUrl: './cancha.component.html',
-  styleUrls: ['./cancha.component.css']
+    selector: 'app-cancha',
+    templateUrl: './cancha.component.html',
+    styleUrls: ['./cancha.component.css'],
+    standalone: false
 })
 export class CanchaComponent implements OnInit {
 

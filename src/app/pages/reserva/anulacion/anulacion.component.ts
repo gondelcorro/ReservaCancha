@@ -7,9 +7,10 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 import {ReservaComponent} from '../reserva.component';
 
 @Component({
-  selector: 'app-anulacion',
-  templateUrl: './anulacion.component.html',
-  styleUrls: ['./anulacion.component.css']
+    selector: 'app-anulacion',
+    templateUrl: './anulacion.component.html',
+    styleUrls: ['./anulacion.component.css'],
+    standalone: false
 })
 export class AnulacionComponent implements OnInit {
 

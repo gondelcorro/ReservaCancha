@@ -17,13 +17,14 @@ import {SchedulerService} from '../../../service/scheduler.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
-  selector: 'app-scheduler',
-  templateUrl: './scheduler.component.html',
-  styleUrls: ['./scheduler.component.css'],
-  providers: [{
-    provide: CalendarDateFormatter,
-    useClass: SchedulerDateFormatter
-  }]
+    selector: 'app-scheduler',
+    templateUrl: './scheduler.component.html',
+    styleUrls: ['./scheduler.component.css'],
+    providers: [{
+            provide: CalendarDateFormatter,
+            useClass: SchedulerDateFormatter
+        }],
+    standalone: false
 })
 export class SchedulerComponent implements OnInit {
 

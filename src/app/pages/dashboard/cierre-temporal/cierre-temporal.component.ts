@@ -3,10 +3,10 @@ import {MAT_DIALOG_DATA} from '@angular/material/dialog';
 import {Complejo} from '../../../model/complejo';
 
 @Component({
-  selector: 'app-cierre-temporal',
-  templateUrl: './cierre-temporal.component.html',
-  styles: [
-  ]
+    selector: 'app-cierre-temporal',
+    templateUrl: './cierre-temporal.component.html',
+    styles: [],
+    standalone: false
 })
 export class CierreTemporalComponent implements OnInit {
 
