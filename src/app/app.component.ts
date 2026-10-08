@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {environment} from 'src/environments/environment';
-import {decode} from 'jwt-decode';
 import {Subject} from 'rxjs';
 import {LoaderService} from './shared/loader.service';
 

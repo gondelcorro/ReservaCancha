@@ -31,6 +31,9 @@ import {AnulacionComponent} from './pages/reserva/anulacion/anulacion.component'
 import {AbonarFechaComponent} from './pages/reserva/abonar-fecha/abonar-fecha.component';
 import {AvatarModule} from 'ngx-avatars';
 import {LottieComponent, provideLottieOptions} from 'ngx-lottie';
+import {CalendarModule, DateAdapter, MOMENT} from 'angular-calendar';
+import moment from 'moment';
+import {adapterFactory} from 'angular-calendar/date-adapters/date-fns';
 
 registerLocaleData(localeEsAr, 'es-Ar');
 
@@ -61,7 +64,7 @@ registerLocaleData(localeEsAr, 'es-Ar');
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
-    //CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory }), // ng add angular-calendar
+    CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory }), // ng add angular-calendar
     SchedulerModule.forRoot({locale: 'es', headerDateFormat: 'daysRange'}), //npm install angular-calendar-scheduler date-fns --save
     NgxMatTimepickerModule, //npm i ngx-mat-timepicker (Este es el q estoy usando)
     NgxMaterialTimepickerModule, // npm install --save ngx-material-timepicker
@@ -76,6 +79,9 @@ registerLocaleData(localeEsAr, 'es-Ar');
     {
       provide: LOCALE_ID,
       useValue: 'es-AR'
+    },
+    { provide: MOMENT,
+      useValue: moment
     },
     DatePipe,
     provideHttpClient(withInterceptorsFromDi()),
